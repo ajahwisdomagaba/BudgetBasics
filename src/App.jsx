@@ -15,6 +15,7 @@ import {
 import { SavingsGoals } from "./pages/SavingsGoals";
 import { MoneyMistakes } from "./pages/MoneyMistakes";
 import { Feedback } from "./pages/Feedback";
+import { Contact } from "./pages/Contact";
 
 const NavLink = ({ href, icon: Icon, children, onClick }) => {
   const [isActive] = useRoute(href);
@@ -318,6 +319,7 @@ export default function App() {
               <Route path="/cards" component={LearningCards} />
               <Route path="/about" component={About} />
               <Route path="/sitemap" component={Sitemap} />
+              <Route path="/contact" component={Contact} />
               <Route>
                 <div className="text-center py-20">
                   <h2 className="text-2xl font-bold">404: Page Not Found</h2>
@@ -354,7 +356,7 @@ export default function App() {
               <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">Talk To Us</p>
               <ul className="space-y-2 text-xs font-medium text-gray-700">
                 <li><Link href="/share-feedback" className="hover:underline">Send feedback</Link></li>
-                <li><Link href="/about" className="hover:underline">Contact</Link></li>
+                <li><Link href="/contact" className="hover:underline">Contact</Link></li>
                 <li><Link href="/sitemap" className="hover:underline">Full sitemap</Link></li>
               </ul>
             </div>
