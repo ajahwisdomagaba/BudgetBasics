@@ -1,0 +1,22 @@
+{
+  "chatbotFAQs": [
+    {
+      "keywords": ["need", "needs", "essential", "rent", "food"],
+      "answer": "Needs are essential expenses required for living, such as rent, groceries, and transportation."
+    },
+    {
+      "keywords": ["want", "wants", "fun", "streaming", "shopping"],
+      "answer": "Wants are non-essential lifestyle expenses like dining out, entertainment, and fashion."
+    },
+    {
+      "keywords": ["50", "30", "20", "rule", "split"],
+      "answer": "The 50-30-20 rule suggests splitting your income: 50% for needs, 30% for wants, and 20% for savings."
+    }
+  ],
+  "needsVsWantsItems": [
+    { "id": 1, "name": "Monthly Rent/Hostel", "type": "need" },
+    { "id": 2, "name": "New Video Game", "type": "want" },
+    { "id": 3, "name": "Public Transport Pass", "type": "need" },
+    { "id": 4, "name": "Streaming Subscription", "type": "want" }
+  ]
+}
