@@ -46,8 +46,8 @@ export function SavingsGoals() {
 
       <div className="grid lg:grid-cols-12 gap-8 items-start">
         {/* Left Column: Form & Progress */}
-        <div className="lg:col-span-7 bg-white p-8 rounded-3xl shadow-sm border border-gray-100 space-y-6">
-          <div className="grid grid-cols-2 gap-6">
+        <div className="lg:col-span-7 bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-gray-100 space-y-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div>
               <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Target amount</label>
               <input 
@@ -98,14 +98,14 @@ export function SavingsGoals() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4 pt-2">
-            <div className="bg-[#f8f6f0] border border-[#e8e4d9] p-6 rounded-2xl">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+            <div className="bg-[#f8f6f0] border border-[#e8e4d9] p-6 rounded-2xl overflow-hidden">
               <p className="text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-1">Still to go</p>
-              <p className="text-3xl font-serif text-gray-800">₦{stillToGo.toLocaleString()}</p>
+              <p className="text-xl sm:text-2xl lg:text-3xl font-serif text-gray-800 truncate">₦{stillToGo.toLocaleString()}</p>
             </div>
-            <div className="bg-[#1b4332] text-white p-6 rounded-2xl shadow-sm">
+            <div className="bg-[#1b4332] text-white p-6 rounded-2xl shadow-sm overflow-hidden">
               <p className="text-[10px] font-bold uppercase tracking-widest text-[#a8baba] mb-1">Estimated Pace</p>
-              <p className="text-3xl font-serif text-white">{estimatedMonths} months</p>
+              <p className="text-xl sm:text-2xl lg:text-3xl font-serif text-white truncate">{estimatedMonths} months</p>
             </div>
           </div>
         </div>

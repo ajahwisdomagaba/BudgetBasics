@@ -1,96 +1,148 @@
-import { useState } from "react";
-import { Send, ShieldCheck } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { Bot, Send, ShieldCheck, Sparkles } from "lucide-react";
 
 export function Chatbot() {
-  const [query, setQuery] = useState("");
-  const [history, setHistory] = useState([
-    { role: "assistant", text: "Hi, I'm BumbleBee. Ask me a practical money question and I'll help you find a small next step." }
+  const [messages, setMessages] = useState([
+    { sender: "bot", text: "Hello! I'm BumbleBee. How can I help you navigate your finances today?" }
   ]);
+  const [input, setInput] = useState("");
+  const [isTyping, setIsTyping] = useState(false);
+  const messagesEndRef = useRef(null);
 
-  const handleAsk = (textToAsk = query) => {
-    if (!textToAsk.trim()) return;
-    
-    const newHistory = [...history, { role: "user", text: textToAsk }];
-    const lowerQuery = textToAsk.toLowerCase();
-    
-    let responseText = "I can help with budgeting, saving, needs versus wants, or recovering from a money mistake. Try asking about one of those.";
-    
-    if (lowerQuery.includes("start a budget")) {
-      responseText = "Start with one month of take-home income and your three regular costs. Then choose one small goal. You do not need perfect records to begin.";
-    } else if (lowerQuery.includes("save for a goal")) {
-      responseText = "Name the goal, set a realistic amount you can repeat, and divide what remains by that monthly amount. Our Savings Goals tool can show the estimate.";
-    } else if (lowerQuery.includes("need or a want")) {
-      responseText = "Try three questions: does it keep you safe or able to learn, what happens if you wait, and can you afford it without borrowing from essentials?";
-    }
-    
-    setHistory([...newHistory, { role: "assistant", text: responseText }]);
-    setQuery("");
+  const predefinedAnswers = {
+    "How do I start a budget?": "Start with one month of take-home income and your three regular costs. Then choose one small goal. You do not need perfect records to begin.",
+    "How can I save for a goal?": "Pick a realistic monthly amount you can repeat easily. Automate the transfer if possible, and keep your goal visible so it stays top of mind.",
+    "Is this a need or a want?": "Ask yourself: if you remove this for 30 days, does your daily routine or safety break? If no, it's likely a want—which is okay, as long as it fits your plan!"
+  };
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages, isTyping]);
+
+  const handleSend = (textToSend) => {
+    const query = textToSend || input;
+    if (!query.trim()) return;
+
+    const userMessage = { sender: "user", text: query };
+    setMessages(prev => [...prev, userMessage]);
+    if (!textToSend) setInput("");
+    setIsTyping(true);
+
+    const botReplyText = predefinedAnswers[query] || "That's a thoughtful question! Remember to keep your finances simple, track what matters most, and avoid strict rules that cause burnout.";
+
+    // Simulate typing delay & character-by-character effect
+    setTimeout(() => {
+      setIsTyping(false);
+      setMessages(prev => [...prev, { sender: "bot", text: "" }]);
+      
+      let index = 0;
+      const interval = setInterval(() => {
+        if (index <= botReplyText.length) {
+          const currentText = botReplyText.substring(0, index);
+          setMessages(prev => {
+            const newMsgs = [...prev];
+            newMsgs[newMsgs.length - 1] = { sender: "bot", text: currentText };
+            return newMsgs;
+          });
+          index++;
+        } else {
+          clearInterval(interval);
+        }
+      }, 20); // typing speed
+    }, 800); // initial thinking delay
   };
 
   return (
     <section className="space-y-8 max-w-4xl mx-auto pb-12">
       <header className="flex justify-between items-start border-b pb-6">
         <div>
-          <p className="text-xs font-bold tracking-widest text-gray-500 uppercase mb-1">A Friendly Second Opinion</p>
+          <p className="text-xs font-bold tracking-widest text-gray-400 uppercase mb-1">A Friendly Second Opinion</p>
           <h2 className="text-4xl font-serif text-budget-green mb-2">Ask BumbleBee.</h2>
-          <p className="text-gray-600">
+          <p className="text-gray-600 max-w-xl">
             A rule-based finance assistant for everyday learning. No accounts, no transactions, and no pretending to know your whole life.
           </p>
         </div>
-        <div className="flex items-center gap-2 bg-white border border-gray-200 px-4 py-2 rounded-xl text-xs font-bold text-gray-600 shadow-sm">
-          <ShieldCheck size={16} className="text-budget-green" /> Safe by design
+        <div className="hidden sm:flex items-center gap-1.5 bg-white border border-gray-200 px-3.5 py-1.5 rounded-full text-xs font-bold text-gray-700 shadow-sm">
+          <ShieldCheck size={14} className="text-budget-green" /> Safe by design
         </div>
       </header>
-      
-      <div className="bg-white border border-gray-200 rounded-3xl overflow-hidden shadow-sm flex flex-col h-130">
-        {/* Chat Header */}
-        <div className="bg-[#e9f2eb] p-4 flex items-center gap-3 border-b border-[#d1e6d6]">
-          <div className="w-10 h-10 rounded-full bg-budget-green flex items-center justify-center text-white font-serif font-bold text-lg">B</div>
-          <div>
-            <h3 className="font-bold text-budget-green">BumbleBee's corner</h3>
-            <p className="text-xs text-gray-600">Practical, general, and on your side.</p>
+
+      {/* Chat Container */}
+      <div className="bg-[#f4f7f5] border border-[#e2e8e4] rounded-3xl p-6 shadow-sm space-y-6 flex flex-col h-[550px]">
+        {/* Chat Header Info */}
+        <div className="bg-white p-4 rounded-2xl border border-gray-200/80 flex items-center justify-between shadow-sm shrink-0">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-budget-green text-white flex items-center justify-center font-bold shadow-sm">
+              <Bot size={22} />
+            </div>
+            <div>
+              <h3 className="font-bold text-gray-900 text-sm">BumbleBee's corner</h3>
+              <p className="text-xs text-gray-500">Practical, general, and on your side.</p>
+            </div>
           </div>
         </div>
 
-        {/* Chat History */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-4">
-          {history.map((msg, i) => (
-            <div key={i} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
-              <div className={`max-w-[80%] p-4 rounded-2xl text-sm ${msg.role === "user" ? "bg-budget-green text-white rounded-br-none" : "bg-gray-100 text-gray-800 rounded-bl-none"}`}>
+        {/* Message History */}
+        <div className="flex-1 overflow-y-auto space-y-4 pr-2">
+          {messages.map((msg, idx) => (
+            <div key={idx} className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
+              <div className={`max-w-md p-4 rounded-2xl text-sm leading-relaxed ${
+                msg.sender === 'user' 
+                  ? 'bg-budget-green text-white rounded-br-none shadow-sm' 
+                  : 'bg-white text-gray-800 rounded-bl-none border border-gray-200 shadow-sm'
+              }`}>
                 {msg.text}
               </div>
             </div>
           ))}
+
+          {isTyping && (
+            <div className="flex justify-start">
+              <div className="bg-white text-gray-500 p-4 rounded-2xl rounded-bl-none border border-gray-200 shadow-sm flex items-center gap-2 text-xs font-medium">
+                <Sparkles size={14} className="animate-spin text-budget-green" /> BumbleBee is thinking...
+              </div>
+            </div>
+          )}
+          <div ref={messagesEndRef} />
         </div>
 
-        {/* Input Area */}
-        <div className="p-4 border-t border-gray-100 bg-[#f8f6f0]">
-          <div className="mb-3">
-            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Try a prompt</p>
-            <div className="flex flex-wrap gap-2">
-              <button onClick={() => handleAsk("How do I start a budget?")} className="text-xs bg-white border border-gray-200 px-3 py-1.5 rounded-full hover:bg-gray-50 transition shadow-sm font-medium">How do I start a budget?</button>
-              <button onClick={() => handleAsk("How can I save for a goal?")} className="text-xs bg-white border border-gray-200 px-3 py-1.5 rounded-full hover:bg-gray-50 transition shadow-sm font-medium">How can I save for a goal?</button>
-              <button onClick={() => handleAsk("Is this a need or a want?")} className="text-xs bg-white border border-gray-200 px-3 py-1.5 rounded-full hover:bg-gray-50 transition shadow-sm font-medium">Is this a need or a want?</button>
-            </div>
+        {/* Prompt Chips & Input Form */}
+        <div className="space-y-3 shrink-0 pt-2 border-t border-gray-200/60">
+          <div className="flex flex-wrap gap-2">
+            {Object.keys(predefinedAnswers).map((prompt, idx) => (
+              <button
+                key={idx}
+                onClick={() => handleSend(prompt)}
+                className="text-xs bg-white border border-gray-300 hover:border-budget-green text-gray-700 px-3 py-1.5 rounded-full font-medium transition shadow-sm"
+              >
+                {prompt}
+              </button>
+            ))}
           </div>
-          
-          <div className="relative">
+
+          <form onSubmit={(e) => { e.preventDefault(); handleSend(input); }} className="flex gap-2">
             <input 
               type="text" 
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Ask a money question..."
-              className="w-full bg-white border border-gray-200 p-4 pr-12 rounded-xl focus:border-budget-green focus:ring-1 focus:ring-budget-green outline-none text-sm font-medium"
-              onKeyDown={(e) => e.key === 'Enter' && handleAsk()}
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              placeholder="Ask a money question..." 
+              className="flex-1 bg-white border border-gray-300 px-4 py-3 rounded-xl focus:outline-none focus:border-budget-green text-sm shadow-sm font-medium"
             />
             <button 
-              onClick={() => handleAsk()}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-white bg-budget-green p-2.5 rounded-lg hover:bg-[#123023] transition shadow-sm"
+              type="submit" 
+              className="bg-budget-green text-white p-3 rounded-xl hover:bg-[#123023] transition flex items-center justify-center shadow-sm"
             >
-              <Send size={16} />
+              <Send size={18} />
             </button>
-          </div>
-          <p className="text-[10px] text-gray-400 mt-2 text-center">BumbleBee provides general education, not professional financial advice. Do not share passwords, card details, or private account information.</p>
+          </form>
+
+          <p className="text-[10px] text-center text-gray-400">
+            BumbleBee provides general education, not professional financial advice. Do not share passwords, card details, or private account information.
+          </p>
         </div>
       </div>
     </section>

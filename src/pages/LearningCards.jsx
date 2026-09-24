@@ -96,7 +96,7 @@ export function LearningCards() {
                 </div>
                 
                 <div className="pt-6 flex justify-between items-center text-xs font-bold opacity-80">
-                  <Link href="/assistant" className="hover:underline flex items-center gap-1">
+                  <Link href="/ask-bumblebee" className="hover:underline flex items-center gap-1">
                     Want an example? Ask BumbleBee
                   </Link>
                   <ArrowUpRight size={16} />

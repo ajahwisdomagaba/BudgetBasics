@@ -30,7 +30,7 @@ export function BudgetBasics() {
 
   return (
     <section className="space-y-8 max-w-6xl mx-auto pb-12">
-      <header className="flex justify-between items-start border-b pb-6">
+      <header className="flex flex-col lg:flex-row lg:items-center lg:justify-between border-b pb-6 gap-6">
         <div>
           <p className="text-xs font-bold tracking-widest text-gray-400 uppercase mb-1">Lesson 01 · Start Here</p>
           <h2 className="text-4xl font-serif text-budget-green mb-2">Budgeting, without the big scary word.</h2>
@@ -38,7 +38,7 @@ export function BudgetBasics() {
             A budget is simply a plan for money that has not happened yet. It helps you choose what matters before your balance chooses for you.
           </p>
         </div>
-        <Link href="/50-30-20" className="flex items-center gap-2 bg-[#1b4332] text-white px-5 py-2.5 rounded-full text-xs font-bold hover:bg-[#123023] transition shadow-sm shrink-0">
+        <Link href="/50-30-20" className="flex items-center justify-center gap-2 bg-[#1b4332] text-white px-5 py-2.5 rounded-full text-xs font-bold hover:bg-[#123023] transition shadow-sm shrink-0 self-start lg:self-auto">
           Next: 50 / 30 / 20 <ArrowRight size={16} />
         </Link>
       </header>
@@ -51,7 +51,7 @@ export function BudgetBasics() {
             <h3 className="text-4xl font-serif">Money in. Choices out.</h3>
           </div>
 
-          <div className="grid grid-cols-3 gap-4 pt-4 border-t border-[#2d664f]">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-[#2d664f]">
             <div>
               <span className="text-xs font-bold text-budget-mustard">01</span>
               <h4 className="font-bold text-sm mt-1">Notice</h4>
@@ -122,7 +122,7 @@ export function BudgetBasics() {
         </div>
 
         {selectedOption && (
-          <div className="p-4 rounded-2xl bg-[#f8f6f0] border border-[#e8e4d9] text-xs font-medium text-gray-800 animate-fadeIn">
+          <div className="p-4 rounded-2xl bg-[#f8f6f0] border border-[#e8e4d9] text-xs font-medium text-gray-800">
             {selectedOption.feedback}
           </div>
         )}
