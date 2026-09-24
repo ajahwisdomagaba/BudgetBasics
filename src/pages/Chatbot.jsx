@@ -45,7 +45,7 @@ export function Chatbot() {
       <div className="bg-white border border-gray-200 rounded-3xl overflow-hidden shadow-sm flex flex-col h-130">
         {/* Chat Header */}
         <div className="bg-[#e9f2eb] p-4 flex items-center gap-3 border-b border-[#d1e6d6]">
-          <div className="w-10 h-10 rounded-full bg-budget-green flex items-center justify-center text-white font-serif font-bold text-lg">P</div>
+          <div className="w-10 h-10 rounded-full bg-budget-green flex items-center justify-center text-white font-serif font-bold text-lg">B</div>
           <div>
             <h3 className="font-bold text-budget-green">BumbleBee's corner</h3>
             <p className="text-xs text-gray-600">Practical, general, and on your side.</p>
