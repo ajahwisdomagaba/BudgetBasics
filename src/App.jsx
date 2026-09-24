@@ -10,17 +10,18 @@ import { About } from "./pages/About";
 import { Sitemap } from "./pages/Sitemap";
 import { 
   Home, BookOpen, Compass, Calculator, Target, 
-  ListChecks, RotateCcw, Library, Bot, Info, Heart, ArrowRight, DollarSign, Clock, ArrowUp, X
+  ListChecks, RotateCcw, Library, Bot, Info, Heart, ArrowRight, DollarSign, Clock, ArrowUp, X, Menu
 } from "lucide-react";
 import { SavingsGoals } from "./pages/SavingsGoals";
 import { MoneyMistakes } from "./pages/MoneyMistakes";
 import { Feedback } from "./pages/Feedback";
 
-const NavLink = ({ href, icon: Icon, children }) => {
+const NavLink = ({ href, icon: Icon, children, onClick }) => {
   const [isActive] = useRoute(href);
   return (
     <Link 
       href={href} 
+      onClick={onClick}
       className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-colors font-medium text-xs relative ${
         isActive 
           ? "bg-[#255743] text-white shadow-sm" 
@@ -36,9 +37,74 @@ const NavLink = ({ href, icon: Icon, children }) => {
   );
 };
 
+// Declared outside App() to satisfy ESLint static component rules
+const SidebarContent = ({ onItemClick }) => (
+  <div className="flex flex-col h-full">
+    <div className="p-5 pb-3 flex justify-between items-center">
+      <div className="flex items-center gap-3">
+        <div className="w-9 h-9 rounded-xl bg-budget-mustard flex items-center justify-center text-yellow-950 shadow-sm">
+          <DollarSign size={20} strokeWidth={2.5} />
+        </div>
+        <div>
+          <h1 className="text-base font-bold text-white tracking-tight leading-none">BudgetBasics</h1>
+          <p className="text-[9px] text-[#a8baba] uppercase tracking-wider font-semibold mt-1">Money, Made Human</p>
+        </div>
+      </div>
+      <button 
+        onClick={onItemClick} 
+        className="md:hidden text-gray-300 hover:text-white"
+      >
+        <X size={20} />
+      </button>
+    </div>
+
+    <nav className="flex-1 px-3 py-3 space-y-5 overflow-y-auto">
+      <div className="space-y-0.5">
+        <p className="px-3 text-[10px] font-bold text-[#7a9d8c] uppercase tracking-widest mb-1.5">Start Here</p>
+        <NavLink href="/" icon={Home} onClick={onItemClick}>Home</NavLink>
+        <NavLink href="/basics" icon={BookOpen} onClick={onItemClick}>Budgeting basics</NavLink>
+        <NavLink href="/needs-wants" icon={Compass} onClick={onItemClick}>Needs vs wants</NavLink>
+      </div>
+
+      <div className="space-y-0.5">
+        <p className="px-3 text-[10px] font-bold text-[#7a9d8c] uppercase tracking-widest mb-1.5">Try a Tool</p>
+        <NavLink href="/50-30-20" icon={Calculator} onClick={onItemClick}>50 / 30 / 20</NavLink>
+        <NavLink href="/savings-goals" icon={Target} onClick={onItemClick}>Savings goals</NavLink>
+        <NavLink href="/expense-planner" icon={ListChecks} onClick={onItemClick}>Expense planner</NavLink>
+      </div>
+
+      <div className="space-y-0.5">
+        <p className="px-3 text-[10px] font-bold text-[#7a9d8c] uppercase tracking-widest mb-1.5">Keep Learning</p>
+        <NavLink href="/money-mistakes" icon={RotateCcw} onClick={onItemClick}>Money mistakes</NavLink>
+        <NavLink href="/cards" icon={Library} onClick={onItemClick}>Learning cards</NavLink>
+        <NavLink href="/ask-bumblebee" icon={Bot} onClick={onItemClick}>Ask BumbleBee</NavLink>
+      </div>
+
+      <div className="space-y-0.5">
+        <p className="px-3 text-[10px] font-bold text-[#7a9d8c] uppercase tracking-widest mb-1.5">Good to Know</p>
+        <NavLink href="/about" icon={Info} onClick={onItemClick}>About BudgetBasics</NavLink>
+        <NavLink href="/share-feedback" icon={Heart} onClick={onItemClick}>Share feedback</NavLink>
+      </div>
+
+      <div className="mx-1 mt-4 bg-[#255743] p-4 rounded-2xl border border-[#2d664f] shadow-inner">
+        <h3 className="text-sm font-serif font-bold text-white mb-1 leading-snug">
+          One good choice today.
+        </h3>
+        <p className="text-xs text-[#a8baba] mb-3">
+          That is enough progress for now.
+        </p>
+        <Link href="/ask-bumblebee" onClick={onItemClick} className="text-budget-mustard text-xs font-bold flex items-center gap-1.5 hover:text-yellow-300 transition-colors">
+          Ask BumbleBee <ArrowRight size={14} />
+        </Link>
+      </div>
+    </nav>
+  </div>
+);
+
 export default function App() {
   const [time, setTime] = useState("");
   const [showModal, setShowModal] = useState(true);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const updateTime = () => {
@@ -96,71 +162,35 @@ export default function App() {
         </div>
       )}
 
-      {/* Static & Compact Sidebar */}
-      <aside className="w-64 bg-[#1b4332] flex flex-col h-full overflow-y-auto text-white shrink-0 select-none border-r border-[#224d3a]">
-        <div className="p-5 pb-3">
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-budget-mustard flex items-center justify-center text-yellow-950 shadow-sm">
-              <DollarSign size={20} strokeWidth={2.5} />
-            </div>
-            <div>
-              <h1 className="text-base font-bold text-white tracking-tight leading-none">BudgetBasics</h1>
-              <p className="text-[9px] text-[#a8baba] uppercase tracking-wider font-semibold mt-1">Money, Made Human</p>
-            </div>
-          </div>
-        </div>
-
-        <nav className="flex-1 px-3 py-3 space-y-5">
-          <div className="space-y-0.5">
-            <p className="px-3 text-[10px] font-bold text-[#7a9d8c] uppercase tracking-widest mb-1.5">Start Here</p>
-            <NavLink href="/" icon={Home}>Home</NavLink>
-            <NavLink href="/basics" icon={BookOpen}>Budgeting basics</NavLink>
-            <NavLink href="/needs-wants" icon={Compass}>Needs vs wants</NavLink>
-          </div>
-
-          <div className="space-y-0.5">
-            <p className="px-3 text-[10px] font-bold text-[#7a9d8c] uppercase tracking-widest mb-1.5">Try a Tool</p>
-            <NavLink href="/50-30-20" icon={Calculator}>50 / 30 / 20</NavLink>
-            <NavLink href="/savings-goals" icon={Target}>Savings goals</NavLink>
-            <NavLink href="/expense-planner" icon={ListChecks}>Expense planner</NavLink>
-          </div>
-
-          <div className="space-y-0.5">
-            <p className="px-3 text-[10px] font-bold text-[#7a9d8c] uppercase tracking-widest mb-1.5">Keep Learning</p>
-            <NavLink href="/money-mistakes" icon={RotateCcw}>Money mistakes</NavLink>
-            <NavLink href="/cards" icon={Library}>Learning cards</NavLink>
-            <NavLink href="/ask-penny" icon={Bot}>Ask Penny</NavLink>
-          </div>
-
-          <div className="space-y-0.5">
-            <p className="px-3 text-[10px] font-bold text-[#7a9d8c] uppercase tracking-widest mb-1.5">Good to Know</p>
-            <NavLink href="/about" icon={Info}>About BudgetBasics</NavLink>
-            <NavLink href="/share-feedback" icon={Heart}>Share feedback</NavLink>
-          </div>
-
-          {/* Motivational CTA Card */}
-          <div className="mx-1 mt-4 bg-[#255743] p-4 rounded-2xl border border-[#2d664f] shadow-inner">
-            <h3 className="text-sm font-serif font-bold text-white mb-1 leading-snug">
-              One good choice today.
-            </h3>
-            <p className="text-xs text-[#a8baba] mb-3">
-              That is enough progress for now.
-            </p>
-            <Link href="/ask-penny" className="text-budget-mustard text-xs font-bold flex items-center gap-1.5 hover:text-yellow-300 transition-colors">
-              Ask Penny <ArrowRight size={14} />
-            </Link>
-          </div>
-        </nav>
+      {/* Desktop Sidebar */}
+      <aside className="hidden md:flex w-64 bg-[#1b4332] flex-col h-full overflow-y-auto text-white shrink-0 select-none border-r border-[#224d3a]">
+        <SidebarContent />
       </aside>
+
+      {/* Mobile Drawer Sidebar */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-40 md:hidden flex">
+          <div className="w-72 bg-[#1b4332] h-full shadow-2xl flex flex-col relative z-50">
+            <SidebarContent onItemClick={() => setMobileMenuOpen(false)} />
+          </div>
+          <div className="flex-1 bg-black/50 backdrop-blur-sm" onClick={() => setMobileMenuOpen(false)}></div>
+        </div>
+      )}
 
       {/* Main Scrollable Content Area */}
       <main id="main-content-scroll" className="flex-1 h-full overflow-y-auto flex flex-col justify-between">
         <div>
           {/* Universal Top Header Bar */}
-          <div className="border-b border-gray-200/80 px-8 py-3.5 flex flex-col sm:flex-row justify-between items-center bg-white/40 backdrop-blur-sm gap-2">
+          <div className="border-b border-gray-200/80 px-4 sm:px-8 py-3.5 flex flex-row justify-between items-center bg-white/40 backdrop-blur-sm gap-2">
             <div className="flex items-center gap-3 text-xs font-medium text-gray-600">
+              <button 
+                onClick={() => setMobileMenuOpen(true)}
+                className="md:hidden p-1.5 rounded-lg bg-[#1b4332] text-white mr-1"
+              >
+                <Menu size={18} />
+              </button>
               <span className="flex items-center gap-1.5 bg-amber-100/60 text-amber-900 px-3 py-1 rounded-full font-semibold">
-                <Clock size={13} /> Thursday, 24 September 2026 {time}
+                <Clock size={13} /> <span className="hidden sm:inline">Thursday, 24 September 2026</span> {time}
               </span>
             </div>
             <div className="flex items-center gap-4 text-xs font-bold text-gray-700">
@@ -169,7 +199,7 @@ export default function App() {
           </div>
 
           {/* Today's Nudge Banner */}
-          <div className="bg-[#f4e8c1] border-b border-[#e8dcb8] px-8 py-3 flex justify-between items-center text-xs">
+          <div className="bg-[#f4e8c1] border-b border-[#e8dcb8] px-4 sm:px-8 py-3 flex flex-col sm:flex-row justify-between items-start sm:items-center text-xs gap-2">
             <div className="flex items-center gap-3">
               <span className="bg-[#c84b31] text-white px-2.5 py-0.5 rounded-full font-bold uppercase tracking-wider text-[10px]">Today's Nudge</span>
               <span className="font-serif font-medium text-yellow-950">A budget is a conversation with your future self.</span>
@@ -179,17 +209,16 @@ export default function App() {
             </Link>
           </div>
 
-          {/* Page Switcher */}
-          <div className="max-w-6xl mx-auto p-8 lg:p-12">
+          {/* Page Switcher Container */}
+          <div className="max-w-6xl mx-auto p-4 sm:p-8 lg:p-12">
             <Switch>
               <Route path="/" component={() => (
                 <div className="space-y-8">
-                  {/* Welcome Banner */}
-                  <div className="bg-[#1b4332] text-white p-10 lg:p-14 rounded-3xl shadow-xl relative overflow-hidden flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8">
+                  <div className="bg-[#1b4332] text-white p-8 lg:p-14 rounded-3xl shadow-xl relative overflow-hidden flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8">
                     <div className="relative z-10 max-w-2xl">
                       <span className="uppercase tracking-widest text-xs font-bold text-budget-mustard mb-3 block">Welcome to your money corner</span>
-                      <h1 className="text-4xl lg:text-6xl font-serif mb-4 leading-tight">Make money feel a little less scary.</h1>
-                      <p className="text-base opacity-90 mb-6 leading-relaxed">Small, friendly lessons and tools for students and beginners. No jargon. No judgment. Just the next good decision.</p>
+                      <h1 className="text-3xl sm:text-4xl lg:text-6xl font-serif mb-4 leading-tight">Make money feel a little less scary.</h1>
+                      <p className="text-sm sm:text-base opacity-90 mb-6 leading-relaxed">Small, friendly lessons and tools for students and beginners. No jargon. No judgment. Just the next good decision.</p>
                       <div className="flex flex-wrap gap-4">
                         <Link href="/basics" className="bg-[#e9c46a] text-yellow-950 px-6 py-3 rounded-full font-bold hover:bg-yellow-400 transition inline-flex items-center gap-2 text-sm shadow-sm">
                           Start with the basics &rarr;
@@ -215,12 +244,11 @@ export default function App() {
                     </div>
                   </div>
 
-                  {/* Worth Knowing Section */}
                   <div className="space-y-4 pt-4">
                     <div className="flex justify-between items-end">
                       <div>
                         <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Worth Knowing</p>
-                        <h2 className="text-3xl font-serif text-budget-green">Three ideas to carry with you</h2>
+                        <h2 className="text-2xl sm:text-3xl font-serif text-budget-green">Three ideas to carry with you</h2>
                       </div>
                       <Link href="/cards" className="text-xs font-bold text-budget-green hover:underline">
                         See all cards &rarr;
@@ -246,7 +274,6 @@ export default function App() {
                     </div>
                   </div>
 
-                  {/* Quick Facts & Learning Together Row */}
                   <div className="grid md:grid-cols-2 gap-6 pt-4">
                     <div className="bg-[#f4e8c1] border border-[#e2d5ab] p-8 rounded-3xl space-y-4 text-yellow-950">
                       <p className="text-xs font-bold uppercase tracking-widest text-amber-900">Quick Facts</p>
@@ -268,12 +295,12 @@ export default function App() {
                         <h3 className="text-xl font-serif text-budget-green font-bold">48,317 curious visitors</h3>
                         <p className="text-xs text-gray-600 mt-2">You are in good company. BudgetBasics is a quiet place to ask questions that school forgot to answer.</p>
                       </div>
-                      <div className="flex gap-4">
+                      <div className="flex flex-wrap gap-4">
                         <Link href="/needs-wants" className="bg-budget-green text-white px-4 py-2 rounded-xl text-xs font-bold hover:bg-[#123023] transition">
                           Test your instincts &rarr;
                         </Link>
-                        <Link href="/ask-penny" className="border border-gray-300 px-4 py-2 rounded-xl text-xs font-bold text-gray-700 hover:bg-gray-50 transition">
-                          Ask Penny
+                        <Link href="/ask-bumblebee" className="border border-gray-300 px-4 py-2 rounded-xl text-xs font-bold text-gray-700 hover:bg-gray-50 transition">
+                          Ask BumbleBee
                         </Link>
                       </div>
                     </div>
@@ -286,7 +313,7 @@ export default function App() {
               <Route path="/savings-goals" component={SavingsGoals} />
               <Route path="/money-mistakes" component={MoneyMistakes} />
               <Route path="/share-feedback" component={Feedback} />
-              <Route path="/ask-penny" component={Chatbot} />
+              <Route path="/ask-bumblebee" component={Chatbot} />
               <Route path="/basics" component={BudgetBasics} />
               <Route path="/cards" component={LearningCards} />
               <Route path="/about" component={About} />
@@ -303,7 +330,7 @@ export default function App() {
 
         {/* Professional Footer */}
         <footer className="bg-white border-t border-gray-200 mt-16">
-          <div className="max-w-6xl mx-auto px-8 py-12 grid md:grid-cols-3 gap-8">
+          <div className="max-w-6xl mx-auto px-4 sm:px-8 py-12 grid md:grid-cols-3 gap-8">
             <div className="space-y-3">
               <div className="flex items-center gap-2">
                 <div className="w-5 h-5 rounded-full bg-budget-mustard flex items-center justify-center text-yellow-950 font-bold text-xs">$</div>
@@ -333,7 +360,7 @@ export default function App() {
             </div>
           </div>
 
-          <div className="max-w-6xl mx-auto px-8 py-6 border-t border-gray-100 flex flex-col sm:flex-row justify-between items-center text-[11px] text-gray-400 gap-4">
+          <div className="max-w-6xl mx-auto px-4 sm:px-8 py-6 border-t border-gray-100 flex flex-col sm:flex-row justify-between items-center text-[11px] text-gray-400 gap-4">
             <p>Educational estimates only. No banking, transactions, or professional advice.</p>
             <div className="flex items-center gap-4">
               <span>Built for better next steps.</span>

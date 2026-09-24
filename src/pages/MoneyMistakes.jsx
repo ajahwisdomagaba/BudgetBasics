@@ -35,7 +35,7 @@ export function MoneyMistakes() {
           </p>
         </div>
         
-        <Link href="/ask-BumbleBee" className="flex items-center gap-2 border border-gray-300 bg-white px-5 py-2.5 rounded-2xl text-xs font-bold hover:bg-gray-50 transition shadow-sm">
+        <Link href="/ask-bumblebee" className="flex items-center gap-2 border border-gray-300 bg-white px-5 py-2.5 rounded-2xl text-xs font-bold hover:bg-gray-50 transition shadow-sm">
           Talk through <ArrowRight size={14} />
         </Link>
       </header>

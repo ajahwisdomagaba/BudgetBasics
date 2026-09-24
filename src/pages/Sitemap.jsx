@@ -81,7 +81,7 @@ export function Sitemap() {
               </Link>
             </li>
             <li>
-              <Link href="/ask-BumbleeBee" className="flex items-center justify-between text-sm font-bold text-gray-800 hover:text-budget-green transition">
+              <Link href="/ask-bumblebee" className="flex items-center justify-between text-sm font-bold text-gray-800 hover:text-budget-green transition">
                 <span className="flex items-center gap-2"><Bot size={16} /> Ask BumbleBee</span>
                 <ArrowRight size={14} className="text-gray-400" />
               </Link>
