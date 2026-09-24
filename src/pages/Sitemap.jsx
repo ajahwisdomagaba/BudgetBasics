@@ -15,104 +15,112 @@ export function Sitemap() {
 
       <div className="grid md:grid-cols-3 gap-6">
         {/* Start Here */}
-        <div className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm space-y-4">
-          <p className="text-[10px] font-bold text-[#c84b31] uppercase tracking-widest">Start Here</p>
-          <ul className="space-y-3">
-            <li>
-              <Link href="/" className="flex items-center justify-between text-sm font-bold text-gray-800 hover:text-budget-green transition">
-                <span className="flex items-center gap-2"><Home size={16} /> Home</span>
-                <ArrowRight size={14} className="text-gray-400" />
-              </Link>
-            </li>
-            <li>
-              <Link href="/basics" className="flex items-center justify-between text-sm font-bold text-gray-800 hover:text-budget-green transition">
-                <span className="flex items-center gap-2"><BookOpen size={16} /> Budgeting basics</span>
-                <ArrowRight size={14} className="text-gray-400" />
-              </Link>
-            </li>
-            <li>
-              <Link href="/needs-wants" className="flex items-center justify-between text-sm font-bold text-gray-800 hover:text-budget-green transition">
-                <span className="flex items-center gap-2"><Compass size={16} /> Needs vs wants</span>
-                <ArrowRight size={14} className="text-gray-400" />
-              </Link>
-            </li>
-          </ul>
+        <div className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm space-y-4 flex flex-col justify-between">
+          <div>
+            <p className="text-[10px] font-bold text-[#c84b31] uppercase tracking-widest mb-4">Start Here</p>
+            <ul className="space-y-3">
+              <li>
+                <Link href="/" className="flex items-center justify-between text-sm font-bold text-gray-800 hover:text-budget-green transition gap-2">
+                  <span className="flex items-center gap-2 truncate"><Home size={16} className="shrink-0" /> Home</span>
+                  <ArrowRight size={14} className="text-gray-400 shrink-0" />
+                </Link>
+              </li>
+              <li>
+                <Link href="/basics" className="flex items-center justify-between text-sm font-bold text-gray-800 hover:text-budget-green transition gap-2">
+                  <span className="flex items-center gap-2 truncate"><BookOpen size={16} className="shrink-0" /> Budgeting basics</span>
+                  <ArrowRight size={14} className="text-gray-400 shrink-0" />
+                </Link>
+              </li>
+              <li>
+                <Link href="/needs-wants" className="flex items-center justify-between text-sm font-bold text-gray-800 hover:text-budget-green transition gap-2">
+                  <span className="flex items-center gap-2 truncate"><Compass size={16} className="shrink-0" /> Needs vs wants</span>
+                  <ArrowRight size={14} className="text-gray-400 shrink-0" />
+                </Link>
+              </li>
+            </ul>
+          </div>
         </div>
 
         {/* Try a Tool */}
-        <div className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm space-y-4">
-          <p className="text-[10px] font-bold text-[#c84b31] uppercase tracking-widest">Try a Tool</p>
-          <ul className="space-y-3">
-            <li>
-              <Link href="/50-30-20" className="flex items-center justify-between text-sm font-bold text-gray-800 hover:text-budget-green transition">
-                <span className="flex items-center gap-2"><Calculator size={16} /> 50 / 30 / 20</span>
-                <ArrowRight size={14} className="text-gray-400" />
-              </Link>
-            </li>
-            <li>
-              <Link href="/savings-goals" className="flex items-center justify-between text-sm font-bold text-gray-800 hover:text-budget-green transition">
-                <span className="flex items-center gap-2"><Target size={16} /> Savings goals</span>
-                <ArrowRight size={14} className="text-gray-400" />
-              </Link>
-            </li>
-            <li>
-              <Link href="/expense-planner" className="flex items-center justify-between text-sm font-bold text-gray-800 hover:text-budget-green transition">
-                <span className="flex items-center gap-2"><ListChecks size={16} /> Expense planner</span>
-                <ArrowRight size={14} className="text-gray-400" />
-              </Link>
-            </li>
-          </ul>
+        <div className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm space-y-4 flex flex-col justify-between">
+          <div>
+            <p className="text-[10px] font-bold text-[#c84b31] uppercase tracking-widest mb-4">Try a Tool</p>
+            <ul className="space-y-3">
+              <li>
+                <Link href="/50-30-20" className="flex items-center justify-between text-sm font-bold text-gray-800 hover:text-budget-green transition gap-2">
+                  <span className="flex items-center gap-2 truncate"><Calculator size={16} className="shrink-0" /> 50 / 30 / 20</span>
+                  <ArrowRight size={14} className="text-gray-400 shrink-0" />
+                </Link>
+              </li>
+              <li>
+                <Link href="/savings-goals" className="flex items-center justify-between text-sm font-bold text-gray-800 hover:text-budget-green transition gap-2">
+                  <span className="flex items-center gap-2 truncate"><Target size={16} className="shrink-0" /> Savings goals</span>
+                  <ArrowRight size={14} className="text-gray-400 shrink-0" />
+                </Link>
+              </li>
+              <li>
+                <Link href="/expense-planner" className="flex items-center justify-between text-sm font-bold text-gray-800 hover:text-budget-green transition gap-2">
+                  <span className="flex items-center gap-2 truncate"><ListChecks size={16} className="shrink-0" /> Expense planner</span>
+                  <ArrowRight size={14} className="text-gray-400 shrink-0" />
+                </Link>
+              </li>
+            </ul>
+          </div>
         </div>
 
         {/* Keep Learning */}
-        <div className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm space-y-4">
-          <p className="text-[10px] font-bold text-[#c84b31] uppercase tracking-widest">Keep Learning</p>
+        <div className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm space-y-4 flex flex-col justify-between">
+          <div>
+            <p className="text-[10px] font-bold text-[#c84b31] uppercase tracking-widest mb-4">Keep Learning</p>
+            <ul className="space-y-3">
+              <li>
+                <Link href="/money-mistakes" className="flex items-center justify-between text-sm font-bold text-gray-800 hover:text-budget-green transition gap-2">
+                  <span className="flex items-center gap-2 truncate"><RotateCcw size={16} className="shrink-0" /> Money mistakes</span>
+                  <ArrowRight size={14} className="text-gray-400 shrink-0" />
+                </Link>
+              </li>
+              <li>
+                <Link href="/cards" className="flex items-center justify-between text-sm font-bold text-gray-800 hover:text-budget-green transition gap-2">
+                  <span className="flex items-center gap-2 truncate"><Library size={16} className="shrink-0" /> Learning cards</span>
+                  <ArrowRight size={14} className="text-gray-400 shrink-0" />
+                </Link>
+              </li>
+              <li>
+                <Link href="/ask-bumblebee" className="flex items-center justify-between text-sm font-bold text-gray-800 hover:text-budget-green transition gap-2">
+                  <span className="flex items-center gap-2 truncate"><Bot size={16} className="shrink-0" /> Ask BumbleBee</span>
+                  <ArrowRight size={14} className="text-gray-400 shrink-0" />
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      {/* Good to Know - Stretches equally as a grid card */}
+      <div className="grid md:grid-cols-3 gap-6">
+        <div className="bg-[#e9c46a] border border-[#dec062] p-6 rounded-3xl shadow-sm space-y-4 text-yellow-950 md:col-span-1">
+          <p className="text-[10px] font-bold uppercase tracking-widest text-yellow-900">Good to Know</p>
           <ul className="space-y-3">
             <li>
-              <Link href="/money-mistakes" className="flex items-center justify-between text-sm font-bold text-gray-800 hover:text-budget-green transition">
-                <span className="flex items-center gap-2"><RotateCcw size={16} /> Money mistakes</span>
-                <ArrowRight size={14} className="text-gray-400" />
+              <Link href="/about" className="flex items-center justify-between text-sm font-bold text-yellow-950 hover:underline gap-2">
+                <span className="flex items-center gap-2 truncate"><Info size={16} className="shrink-0" /> About</span>
+                <ArrowRight size={14} className="shrink-0" />
               </Link>
             </li>
             <li>
-              <Link href="/cards" className="flex items-center justify-between text-sm font-bold text-gray-800 hover:text-budget-green transition">
-                <span className="flex items-center gap-2"><Library size={16} /> Learning cards</span>
-                <ArrowRight size={14} className="text-gray-400" />
+              <Link href="/share-feedback" className="flex items-center justify-between text-sm font-bold text-yellow-950 hover:underline gap-2">
+                <span className="flex items-center gap-2 truncate"><Heart size={16} className="shrink-0" /> Feedback</span>
+                <ArrowRight size={14} className="shrink-0" />
               </Link>
             </li>
             <li>
-              <Link href="/ask-bumblebee" className="flex items-center justify-between text-sm font-bold text-gray-800 hover:text-budget-green transition">
-                <span className="flex items-center gap-2"><Bot size={16} /> Ask BumbleBee</span>
-                <ArrowRight size={14} className="text-gray-400" />
+              <Link href="/contact" className="flex items-center justify-between text-sm font-bold text-yellow-950 hover:underline gap-2">
+                <span className="flex items-center gap-2 truncate"><Compass size={16} className="shrink-0" /> Contact</span>
+                <ArrowRight size={14} className="shrink-0" />
               </Link>
             </li>
           </ul>
         </div>
-      </div>
-
-      {/* Good to Know */}
-      <div className="bg-[#e9c46a] border border-[#dec062] p-8 rounded-3xl shadow-sm space-y-4 max-w-xl text-yellow-950">
-        <p className="text-[10px] font-bold uppercase tracking-widest text-yellow-900">Good to Know</p>
-        <ul className="space-y-3">
-          <li>
-            <Link href="/about" className="flex items-center justify-between text-sm font-bold text-yellow-950 hover:underline">
-              <span className="flex items-center gap-2"><Info size={16} /> About</span>
-              <ArrowRight size={14} />
-            </Link>
-          </li>
-          <li>
-            <Link href="/share-feedback" className="flex items-center justify-between text-sm font-bold text-yellow-950 hover:underline">
-              <span className="flex items-center gap-2"><Heart size={16} /> Feedback</span>
-              <ArrowRight size={14} />
-            </Link>
-          </li>
-          <li>
-            <Link href="/about" className="flex items-center justify-between text-sm font-bold text-yellow-950 hover:underline">
-              <span className="flex items-center gap-2"><Compass size={16} /> Contact</span>
-              <ArrowRight size={14} />
-            </Link>
-          </li>
-        </ul>
       </div>
     </section>
   );

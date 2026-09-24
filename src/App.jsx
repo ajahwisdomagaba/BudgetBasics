@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Route, Switch, Link, useRoute } from "wouter";
+import { Route, Switch, Link, useRoute, useLocation } from "wouter";
 import { NeedsVsWants } from "./pages/NeedsVsWants";
 import { Chatbot } from "./pages/Chatbot";
 import { BudgetCalculator } from "./pages/BudgetCalculator";
@@ -37,6 +37,19 @@ const NavLink = ({ href, icon: Icon, children, onClick }) => {
     </Link>
   );
 };
+
+// ScrollToTop Helper Component to reset scroll on route change
+function ScrollToTop() {
+  const [location] = useLocation();
+  useEffect(() => {
+    const container = document.getElementById("main-content-scroll");
+    if (container) {
+      container.scrollTo({ top: 0, behavior: 'instant' });
+    }
+    window.scrollTo(0, 0);
+  }, [location]);
+  return null;
+}
 
 // Declared outside App() to satisfy ESLint static component rules
 const SidebarContent = ({ onItemClick }) => (
@@ -180,6 +193,7 @@ export default function App() {
 
       {/* Main Scrollable Content Area */}
       <main id="main-content-scroll" className="flex-1 h-full overflow-y-auto flex flex-col justify-between">
+        <ScrollToTop />
         <div>
           {/* Universal Top Header Bar */}
           <div className="border-b border-gray-200/80 px-4 sm:px-8 py-3.5 flex flex-row justify-between items-center bg-white/40 backdrop-blur-sm gap-2">
