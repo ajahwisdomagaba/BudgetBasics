@@ -1,0 +1,113 @@
+PROJECT DELIVERABLES
+
+1. Problem Definition
+
+The Context: Financial literacy for students, young adults, and beginners is frequently hindered by intimidating financial jargon, overly strict rules, and guilt-inducing tools that lead to tracking fatigue and burnout.
+The Problem: Traditional banking applications and complex personal finance tools focus heavily on transaction aggregation, bank linking, and heavy data collection, creating privacy concerns and an overwhelming user experience for novices just trying to figure out daily money management.
+The Solution: BudgetBasics provides a friendly, human-centered, client-side web application designed to make personal finance accessible and anxiety-free. It features interactive bite-sized lessons, practical local currency calculators (configured with Nigerian Naira formatting), zero backend database tracking or banking dependencies, and a safe rule-based assistant ("Ask BumbleBee") focused entirely on financial education.
+
+
+
+2. Design Specifications
+
+Technology Stack:
+  Core Library: React with Vite for fast performance and HMR.
+  Routing: `wouter` for lightweight, client-side single-page application (SPA) routing.
+  Styling: Tailwind CSS.
+  Icons: `lucide-react`.
+
+
+    Color Psychology & Palette:
+      Budget-Green (`#1b4332` / `#255743`): Primary deep tone symbolizing financial growth, stability, and calm.
+      Budget-Mustard (`#e9c46a`): Accent highlight tone used for callouts, tags, and progress achievements.
+      Budget-Beige (`#fcf8ec` / background setup): Warm neutral background replacing cold clinical interfaces to reduce user anxiety.
+
+
+UI/UX Architecture:
+  Static, compact sidebar layout with a responsive mobile hamburger drawer menu.
+  Universal scroll-to-top utility hook ensuring seamless navigation resets.
+  Strict client-side input validation protecting calculators from negative figures.
+  Automatic startup welcome modal on initial application load.
+
+
+
+---
+
+3. System Diagrams & Workflows
+
+    A. Navigation Flowchart
+
+```text
+[Startup Welcome Modal / App Launch]
+              │
+              ├──> Start Here 
+              │      ├── Home Dashboard (Tiny Win tracker & Worth Knowing cards)
+              │      ├── Budgeting Basics (Lesson 01 & Knowledge Check Quiz)
+              │      └── Needs vs Wants (Interactive Sorting Module)
+              │
+              ├──> Try a Tool 
+              │      ├── 50 / 30 / 20 Calculator
+              │      ├── Savings Goals (Target pace & buffer builder)
+              │      └── Expense Planner (Client-side weekly budget logger)
+              │
+              ├──> Keep Learning 
+              │      ├── Money Mistakes (Accordion mindset resets)
+              │      ├── Learning Cards (Filterable visual financial cards)
+              │      └── Ask BumbleBee (Simulated AI assistant with typewriter effect)
+              │
+              └──> Good to Know 
+                     ├── About BudgetBasics
+                     ├── Share Feedback
+                     ├── Contact Form
+                     └── Full Sitemap Grid
+
+```
+
+  B. Data Flow Architecture
+
+    Local State Management**: All user inputs (savings goals, income calculations, expense items, and chat interactions) operate strictly within client-side React hooks (`useState`, `useEffect`) and browser memory.
+    Form Submission Handlers**: Contact and feedback modules process data locally via state handlers, bypassing external server requests to simulate success responses securely within the client session.
+
+---
+
+
+4. Test Data Used in the Project
+
+To validate calculator logic, responsiveness, and edge cases during evaluations, standard test datasets are implemented across modules:
+    50 / 30 / 20 Calculator Test Data**: Initialized with a baseline income input (e.g., ₦150,000 monthly take-home) to accurately partition figures into Needs (₦75,000), Wants (₦45,000), and Savings (₦30,000).
+    Savings Goal Tool Test Data**: Configured with a default target amount of ₦80,000, current savings of ₦18,000, and planned monthly contributions of ₦12,500.
+    Negative Input Test Case*: Entering negative figures (e.g., `-80000`) triggers instant interception, forcing values to safe baselines and outputting an error alert (*"Negative values are not allowed. Amount must be greater than zero."*).
+
+
+    Knowledge Check & Sorting Quiz Data**: Pre-defined option sets with strict state-based condition checks providing instant positive reinforcement or gentle corrective explanations.
+
+---
+
+   5. Project Installation & Execution Instructions
+
+Follow these instructions to run the application locally for grading and demonstration:
+
+1.    Environment Prerequisite: Ensure *Node.js* is installed on your machine.
+2.    Extract & Open Project: Open your project root folder inside a terminal or code editor (such as VS Code).
+3.    Install Dependencies: Run the package manager command in your terminal:
+
+```bash
+npm install
+
+```
+
+
+*(or `pnpm install`)*
+
+
+    Run the Development Server**: Start the local Vite server:
+```bash
+npm run dev
+
+```
+
+
+*(or `pnpm run dev`)*
+
+
+5. Access in Browser: Open your web browser and navigate to the local development URL provided in the terminal (typically `http://localhost:5173`).
