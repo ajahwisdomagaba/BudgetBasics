@@ -12,14 +12,14 @@ export function About() {
             BudgetBasics is a small educational companion for students and beginners who want useful answers without the shame spiral.
           </p>
         </div>
-        <Link href="/share-feedback" className="bg-[#1b4332] text-white px-5 py-2.5 rounded-full text-xs font-bold hover:bg-[#123023] transition flex items-center gap-2 shadow-sm">
+        <Link href="/share-feedback" className="bg-budget-green text-white px-5 py-2.5 rounded-full text-xs font-bold hover:bg-[#123023] transition flex items-center gap-2 shadow-sm">
           Help shape it &hearts;
         </Link>
       </header>
 
       <div className="grid lg:grid-cols-12 gap-8 items-start">
         {/* Left Column: Promise */}
-        <div className="lg:col-span-7 bg-[#1b4332] text-white p-10 rounded-3xl shadow-md space-y-6">
+        <div className="lg:col-span-7 bg-budget-green text-white p-10 rounded-3xl shadow-md space-y-6">
           <p className="text-xs font-bold uppercase tracking-widest text-[#a8baba]">Our Promise</p>
           <h3 className="text-4xl font-serif leading-tight">Less financial fog.<br />More next steps.</h3>
           <p className="text-sm text-[#d4ded7] leading-relaxed">
@@ -28,7 +28,7 @@ export function About() {
         </div>
 
         {/* Right Column: Skill Card */}
-        <div className="lg:col-span-5 bg-[#e9c46a] text-yellow-950 p-8 rounded-3xl shadow-sm space-y-4">
+        <div className="lg:col-span-5 bg-budget-mustard text-yellow-950 p-8 rounded-3xl shadow-sm space-y-4">
           <span className="text-xs font-bold uppercase tracking-widest bg-yellow-200/50 px-3 py-1 rounded-full inline-block">✨ Skill</span>
           <h3 className="text-3xl font-serif">Curiosity is a money skill.</h3>
           <p className="text-sm leading-relaxed opacity-90">

@@ -7,7 +7,7 @@ export function Chatbot() {
   ]);
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
-  const messagesEndRef = useRef(null);
+  const chatContainerRef = useRef(null);
 
   const predefinedAnswers = {
     "How do I start a budget?": "Start with one month of take-home income and your three regular costs. Then choose one small goal. You do not need perfect records to begin.",
@@ -16,7 +16,9 @@ export function Chatbot() {
   };
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+    }
   };
 
   useEffect(() => {
@@ -34,7 +36,6 @@ export function Chatbot() {
 
     const botReplyText = predefinedAnswers[query] || "That's a thoughtful question! Remember to keep your finances simple, track what matters most, and avoid strict rules that cause burnout.";
 
-    // Simulate typing delay & character-by-character effect
     setTimeout(() => {
       setIsTyping(false);
       setMessages(prev => [...prev, { sender: "bot", text: "" }]);
@@ -48,12 +49,22 @@ export function Chatbot() {
             newMsgs[newMsgs.length - 1] = { sender: "bot", text: currentText };
             return newMsgs;
           });
+          
+          // Only auto-scroll if user hasn't scrolled away from bottom
+          if (chatContainerRef.current) {
+            const { scrollTop, scrollHeight, clientHeight } = chatContainerRef.current;
+            const isNearBottom = scrollHeight - scrollTop - clientHeight < 100;
+            if (isNearBottom) {
+              scrollToBottom();
+            }
+          }
+          
           index++;
         } else {
           clearInterval(interval);
         }
-      }, 20); // typing speed
-    }, 800); // initial thinking delay
+      }, 20);
+    }, 800);
   };
 
   return (
@@ -84,10 +95,11 @@ export function Chatbot() {
               <p className="text-xs text-gray-500">Practical, general, and on your side.</p>
             </div>
           </div>
+          <span className="text-[10px] bg-amber-100 text-amber-900 font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">Simulated AI</span>
         </div>
 
-        {/* Message History */}
-        <div className="flex-1 overflow-y-auto space-y-4 pr-2">
+        {/* Message History Ref added to scrollable container */}
+        <div ref={chatContainerRef} className="flex-1 overflow-y-auto space-y-4 pr-2">
           {messages.map((msg, idx) => (
             <div key={idx} className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
               <div className={`max-w-md p-4 rounded-2xl text-sm leading-relaxed ${
@@ -107,7 +119,6 @@ export function Chatbot() {
               </div>
             </div>
           )}
-          <div ref={messagesEndRef} />
         </div>
 
         {/* Prompt Chips & Input Form */}

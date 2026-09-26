@@ -140,7 +140,7 @@ export default function App() {
       {/* Startup Welcome Modal */}
       {showModal && (
         <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-[#1b4332] text-white p-8 lg:p-10 rounded-3xl shadow-2xl max-w-lg w-full relative space-y-6 animate-fadeIn border border-[#2d664f]">
+          <div className="bg-budget-green text-white p-8 lg:p-10 rounded-3xl shadow-2xl max-w-lg w-full relative space-y-6 animate-fadeIn border border-[#2d664f]">
             <button 
               onClick={() => setShowModal(false)}
               className="absolute top-6 right-6 text-[#a8baba] hover:text-white transition"
@@ -168,7 +168,7 @@ export default function App() {
 
             <button 
               onClick={() => setShowModal(false)}
-              className="w-full bg-[#e9c46a] text-yellow-950 py-3.5 rounded-full font-bold hover:bg-yellow-400 transition shadow-sm text-sm"
+              className="w-full bg-budget-mustard text-yellow-950 py-3.5 rounded-full font-bold hover:bg-yellow-400 transition shadow-sm text-sm"
             >
               Get Started &rarr;
             </button>
@@ -177,14 +177,14 @@ export default function App() {
       )}
 
       {/* Desktop Sidebar */}
-      <aside className="hidden md:flex w-64 bg-[#1b4332] flex-col h-full overflow-y-auto text-white shrink-0 select-none border-r border-[#224d3a]">
+      <aside className="hidden md:flex w-64 bg-budget-green flex-col h-full overflow-y-auto text-white shrink-0 select-none border-r border-[#224d3a]">
         <SidebarContent />
       </aside>
 
       {/* Mobile Drawer Sidebar */}
       {mobileMenuOpen && (
         <div className="fixed inset-0 z-40 md:hidden flex">
-          <div className="w-72 bg-[#1b4332] h-full shadow-2xl flex flex-col relative z-50">
+          <div className="w-72 bg-budget-green h-full shadow-2xl flex flex-col relative z-50">
             <SidebarContent onItemClick={() => setMobileMenuOpen(false)} />
           </div>
           <div className="flex-1 bg-black/50 backdrop-blur-sm" onClick={() => setMobileMenuOpen(false)}></div>
@@ -200,7 +200,7 @@ export default function App() {
             <div className="flex items-center gap-3 text-xs font-medium text-gray-600">
               <button 
                 onClick={() => setMobileMenuOpen(true)}
-                className="md:hidden p-1.5 rounded-lg bg-[#1b4332] text-white mr-1"
+                className="md:hidden p-1.5 rounded-lg bg-budget-green text-white mr-1"
               >
                 <Menu size={18} />
               </button>
@@ -229,13 +229,13 @@ export default function App() {
             <Switch>
               <Route path="/" component={() => (
                 <div className="space-y-8">
-                  <div className="bg-[#1b4332] text-white p-8 lg:p-14 rounded-3xl shadow-xl relative overflow-hidden flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8">
+                  <div className="bg-budget-green text-white p-8 lg:p-14 rounded-3xl shadow-xl relative overflow-hidden flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8">
                     <div className="relative z-10 max-w-2xl">
                       <span className="uppercase tracking-widest text-xs font-bold text-budget-mustard mb-3 block">Welcome to your money corner</span>
                       <h1 className="text-3xl sm:text-4xl lg:text-6xl font-serif mb-4 leading-tight">Make money feel a little less scary.</h1>
                       <p className="text-sm sm:text-base opacity-90 mb-6 leading-relaxed">Small, friendly lessons and tools for students and beginners. No jargon. No judgment. Just the next good decision.</p>
                       <div className="flex flex-wrap gap-4">
-                        <Link href="/basics" className="bg-[#e9c46a] text-yellow-950 px-6 py-3 rounded-full font-bold hover:bg-yellow-400 transition inline-flex items-center gap-2 text-sm shadow-sm">
+                        <Link href="/basics" className="bg-budget-mustard text-yellow-950 px-6 py-3 rounded-full font-bold hover:bg-yellow-400 transition inline-flex items-center gap-2 text-sm shadow-sm">
                           Start with the basics &rarr;
                         </Link>
                         <Link href="/50-30-20" className="bg-[#255743] text-white px-6 py-3 rounded-full font-bold hover:bg-[#2d664f] transition inline-flex items-center gap-2 text-sm border border-[#376e57]">
@@ -252,7 +252,7 @@ export default function App() {
                           <span>curiosity</span>
                           <span>60% clearer</span>
                         </div>
-                        <div className="w-full bg-[#1b4332] rounded-full h-2">
+                        <div className="w-full bg-budget-green rounded-full h-2">
                           <div className="bg-budget-mustard h-2 rounded-full w-3/5"></div>
                         </div>
                       </div>
