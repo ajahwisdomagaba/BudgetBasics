@@ -30,7 +30,7 @@ export function About() {
         {/* Right Column: Skill Card */}
         <div className="lg:col-span-5 bg-[#e9c46a] text-yellow-950 p-8 rounded-3xl shadow-sm space-y-4">
           <span className="text-xs font-bold uppercase tracking-widest bg-yellow-200/50 px-3 py-1 rounded-full inline-block">✨ Skill</span>
-          <h3 className="text-3xl font-serif">Curiousity is a money skill.</h3>
+          <h3 className="text-3xl font-serif">Curiosity is a money skill.</h3>
           <p className="text-sm leading-relaxed opacity-90">
             There is no "should have known this already" here.
           </p>
