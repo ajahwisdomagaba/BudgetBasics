@@ -95,7 +95,6 @@ export function Chatbot() {
               <p className="text-xs text-gray-500">Practical, general, and on your side.</p>
             </div>
           </div>
-          <span className="text-[10px] bg-amber-100 text-amber-900 font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">Simulated AI</span>
         </div>
 
         {/* Message History Ref added to scrollable container */}
