@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+  <!-- Rounded Green Background Box -->
+  <rect x="5" y="5" width="90" height="90" rx="24" fill="#1b4332" />
+  <rect x="5" y="5" width="90" height="90" rx="24" fill="none" stroke="#224d3a" stroke-width="2" />
+  
+  <!-- Inner Mustard Circle -->
+  <circle cx="50" cy="50" r="30" fill="#e9c46a" />
+  
+  <!-- Dollar Sign -->
+  <text x="50" y="62" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="40" fill="#3b2d0c" text-anchor="middle">$</text>
+</svg>
